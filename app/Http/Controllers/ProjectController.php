@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Project;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -86,10 +87,26 @@ class ProjectController extends Controller
 
     public function getPDF(){
         $entidad="Ministerio de Justicia y Seguridad Pública";
-        $hoy=date("d-m-Y h:i:s");
+        $hoy= date("d-m-Y h:i A");
         $projects= Project::all();
         $pdf=PDF::loadView('projects_pdf',compact('projects','entidad','hoy'))->setOption('fontDir', public_path('/assets/fonts'));;
         return $pdf->stream('projects.pdf');
+    }
+
+    public function graph()
+    {
+        $d = Project::select(DB::raw("SUM(planned_amount) as planned_amount"), DB::raw("SUM(sponsored_amount) as sponsored_amount"),DB::raw("SUM(own_amount) as own_amount"), DB::raw("MONTHNAME(created_at) as month_name"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->get()
+        ->toArray();
+
+        $labels = array_column($d, 'month_name');
+        $data = array_column($d, 'planned_amount');
+        $data2 = array_column($d, 'sponsored_amount');
+        $data3 = array_column($d, 'own_amount');
+
+        return view('dashboard', compact('labels', 'data', 'data2','data3'));
     }
 
 }

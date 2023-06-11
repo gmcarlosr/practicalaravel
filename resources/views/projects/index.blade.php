@@ -10,8 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-between">
-                        <a href="pdf" class="text-dark bg-indigo-500 hover:bg-indigo-700 font-bold py-2 px-4 rounded">Ver PDF</a>
-                        <a href="{{ route('projects.create') }}" class="text-dark bg-indigo-500 hover:bg-indigo-700 font-bold py-2 px-4 rounded">Crear proyecto</a>
+                        <a style="background-color: #06b6d4; border-radius:5px 5px 5px 5px;height:38px" href="pdf" class="text-white bg-indigo-500 hover:bg-indigo-700 font-bold py-2 px-4 rounded">Ver PDF</a>
+                        <a style="background-color: #712cf9; border-radius:5px 5px 5px 5px;height:38px" href="{{ route('projects.create') }}" class="text-white bg-indigo-500 hover:bg-indigo-700 font-bold py-2 px-4 rounded">Crear proyecto</a>
                     
                     </div>
                     <div class="mt-4">
@@ -31,17 +31,24 @@
                                     <tr>
                                         <td class="border px-4 py-2">{{ $project->name }}</td>
                                         <td class="border px-4 py-2">{{ $project->source_fund }}</td>
-                                        <td class="border px-4 py-2">{{ $project->planned_amount }}</td>
-                                        <td class="border px-4 py-2">{{ $project->sponsored_amount }}</td>
-                                        <td class="border px-4 py-2">{{ $project->own_amount }}</td>
+                                        <td style="text-align:right" class="border px-4 py-2">$ {{  number_format($project->planned_amount,2) }}</td>
+                                        <td style="text-align:right" class="border px-4 py-2">$ {{  number_format($project->sponsored_amount,2) }}</td>
+                                        <td style="text-align:right" class="border px-4 py-2">$ {{  number_format($project->own_amount,2) }}</td>
                                         <td class="border px-4 py-2" style="width: 260px">
-                                            <a href="{{ route('projects.show', $project) }}" class="bg-blue-500 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded">{{ __('Ver') }}</a>
-                                            <a href="{{ route('projects.edit', $project) }}" class="bg-blue-500 hover:bg-blue-700 text-dark font-bold py-2 px-4 rounded">{{ __('Editar') }}</a>
-                                            <form action="{{ route('projects.destroy', $project) }}" method="POST" class="inline">
+                                            <table>
+                                                <tr>
+                                                    <td> <a style="background-color:#06b6d4;border-radius:5px 5px 5px 5px;height:38px !important" href="{{ route('projects.show', $project) }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('Ver') }}</a></td>
+                                                    <td><a style="background-color: #712cf9; border-radius:5px 5px 5px 5px;height:38px" href="{{ route('projects.edit', $project) }}" class="text-white font-bold py-2 px-4 rounded">{{ __('Editar') }}</a></td>
+                                                    <td><form action="{{ route('projects.destroy', $project) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">{{ __('Eliminar') }}</button>
-                                            </form>
+                                                <button style="height:33px" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">{{ __('Eliminar') }}</button>
+                                            </form></td>
+                                                </tr>
+                                            </table>
+                                           
+                                            
+                                            
                                         </td>
                                     </tr>
                                 @empty

@@ -51,7 +51,7 @@
                         </div>
                         <div class="flex justify-end">
                             <a href="{{ route('projects.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">{{ __('Cancelar') }}</a>
-                            <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-dark font-bold py-2 px-4 rounded ml-2">{{ $buttonText }}</button>
+                            <button style="background-color: #712cf9; border-radius:5px 5px 5px 5px;" type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded ml-2">{{ $buttonText }}</button>
                         </div>
                     </form>
                 </div>
