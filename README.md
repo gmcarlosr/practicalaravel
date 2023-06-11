@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/gmcarlosr/practicalaravel/main/assets/practica_laravel.jpg"/>
+<img src="https://raw.githubusercontent.com/gmcarlosr/practicalaravel/main/public/assets/practica_laravel.jpg"/>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
